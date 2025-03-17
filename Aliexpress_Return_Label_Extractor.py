@@ -7,27 +7,27 @@ from gimpfu import *
 edit_on_new_tab = False
 
 # Specific Label Configuration
-# Amazon Return Label
-crop_x, crop_y = 1626, 360
-crop_w, crop_h = 1035, 1602
+# Aliexpress Return Label
+crop_x, crop_y = 2103, 216
+crop_w, crop_h = 1221, 1869
 
 # Static Label Configuration
 canvas_width, canvas_height = 1200, 1800 # 4x6 inches Label
 
 
-def amazon_return_label_extractor(image, layer):
-    old_w, old_h = image.width, image.height
+def aliexpress_return_label_extractor(image, layer):
+    # old_w, old_h = image.width, image.height
 
-    # Rotate the active layer (not just the whole image metadata)
-    pdb.gimp_item_transform_rotate(layer, 90 * (3.14159 / 180), True, old_w / 2, old_h / 2)
+    # # Rotate the active layer (not just the whole image metadata)
+    # pdb.gimp_item_transform_rotate(layer, 90 * (3.14159 / 180), True, old_w / 2, old_h / 2)
 
-    new_w, new_h = old_h, old_w
-    pdb.gimp_image_resize(image, new_w, new_h, 0, 0)
+    # new_w, new_h = old_h, old_w
+    # pdb.gimp_image_resize(image, new_w, new_h, 0, 0)
 
-    # Move the layer to the center
-    pdb.gimp_layer_set_offsets(layer, 0, 0)
+    # # Move the layer to the center
+    # pdb.gimp_layer_set_offsets(layer, 0, 0)
 
-    gimp.displays_flush()
+    # gimp.displays_flush()
 
     
 
@@ -101,17 +101,17 @@ def amazon_return_label_extractor(image, layer):
 
 
 register(
-    "Amazon_Return_Label_Extractor",
+    "Aliexpress_Return_Label_Extractor",
     "Automatically Converts the PDF Received for Shipping in to a 4x6 Standard Shipping Label",
     "",
     "Nerexbcd",
     "Nerexbcd",
     "2025",
-    "<Image>/Nerexbcd/Label Extraction/Amazon Return Label",
+    "<Image>/Nerexbcd/Label Extraction/Aliexpress Return Label",
     "*",
     [],
     [],
-    amazon_return_label_extractor
+    aliexpress_return_label_extractor
 )
 
 main()
